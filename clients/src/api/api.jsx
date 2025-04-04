@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  // baseURL: "http://localhost:3096",
-  baseURL: "https://karanabackendrepo-production.up.railway.app/",
+  baseURL: "http://localhost:3096",
+  // baseURL: "https://karanabackendrepo-production.up.railway.app/",
 
 });
 
