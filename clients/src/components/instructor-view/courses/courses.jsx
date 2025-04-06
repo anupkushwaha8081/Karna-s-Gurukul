@@ -49,6 +49,7 @@ function InstructorCourses({ listOfCourses }) {
                 <TableHead>Course</TableHead>
                 <TableHead>Students</TableHead>
                 <TableHead>Revenue</TableHead>
+                <TableHead>Status</TableHead>
                 <TableHead className="text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
@@ -63,6 +64,19 @@ function InstructorCourses({ listOfCourses }) {
                       <TableCell>
                         ${course?.students?.length * course?.pricing}
                       </TableCell>
+                      <TableCell>
+                        <span
+                          className={`font-semibold ${
+                            course?.status === "approved"
+                              ? "text-green-600"
+                              : "text-red-600"
+                          }`}
+                        >
+                          {course?.status}
+                        </span>
+                      </TableCell>
+
+                      
                       <TableCell className="text-right">
                         <Button
                           onClick={() => {

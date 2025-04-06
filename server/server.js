@@ -27,9 +27,11 @@ dbConnect();
 const authRoutes = require("./routes/auth-routes")
 const instructorroutes = require("./routes/instructor-routes")
 const studentroutes =require("./routes/student-routes")
+const adminroutes = require("./routes/admin-routes")
 app.use("/auth", authRoutes);
 app.use("/instructor", instructorroutes);
 app.use("/student", studentroutes);
+app.use("/admin", adminroutes);
 
 // Define routes
 app.get("/", (req, res) => {

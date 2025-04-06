@@ -36,6 +36,43 @@ const registerUser = async (req, res) => {
   });
 };
 
+// const loginUser = async (req, res) => {
+//   const { userEmail, password } = req.body;
+
+//   const checkUser = await User.findOne({ userEmail });
+
+//   if (!checkUser || !(await bcrypt.compare(password, checkUser.password))) {
+//     return res.status(401).json({
+//       success: false,
+//       message: "Invalid credentials",
+//     });
+//   }
+
+//   const accessToken = jwt.sign(
+//     {
+//       _id: checkUser._id,
+//       userName: checkUser.userName,
+//       userEmail: checkUser.userEmail,
+//       role: checkUser.role,
+//     },
+//     "JWT_SECRET",
+//     { expiresIn: "120m" }
+//   );
+
+//   res.status(200).json({
+//     success: true,
+//     message: "Logged in successfully",
+//     data: {
+//       accessToken,
+//       user: {
+//         _id: checkUser._id,
+//         userName: checkUser.userName,
+//         userEmail: checkUser.userEmail,
+//         role: checkUser.role,
+//       },
+//     },
+//   });
+// };
 const loginUser = async (req, res) => {
   const { userEmail, password } = req.body;
 
@@ -48,6 +85,15 @@ const loginUser = async (req, res) => {
     });
   }
 
+  // ❌ If user is suspended
+  if (!checkUser.isActive) {
+    return res.status(403).json({
+      success: false,
+      message: `You have been suspended by the admin on ${checkUser.suspendedAt?.toLocaleDateString() || "an unknown date"}`,
+    });
+  }
+
+  // ✅ Proceed to login if user is active
   const accessToken = jwt.sign(
     {
       _id: checkUser._id,
@@ -73,5 +119,6 @@ const loginUser = async (req, res) => {
     },
   });
 };
+
 
 module.exports = { registerUser, loginUser };

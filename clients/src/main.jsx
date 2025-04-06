@@ -8,16 +8,18 @@ import AuthProvider from "./context/auth-context.jsx";
 import InstructorProvider from "./context/instructor-context";
 import StudentProvider from "./context/student-context";
 import { ToastContainer } from "react-toastify";
+import { AdminProvider } from "./context/admin-context";
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    <AuthProvider>
-      <InstructorProvider>
-        <StudentProvider>
+  <AuthProvider>
+    <InstructorProvider>
+      <StudentProvider>
+        <AdminProvider> {/* ✅ ADD THIS */}
           <RoutesMain />
-          {/* <App /> */}
           <ToastContainer autoClose={3000} />
-        </StudentProvider>
-      </InstructorProvider>
-    </AuthProvider>
-  </BrowserRouter>
+        </AdminProvider>
+      </StudentProvider>
+    </InstructorProvider>
+  </AuthProvider>
+</BrowserRouter>
 );

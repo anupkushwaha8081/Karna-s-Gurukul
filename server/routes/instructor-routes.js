@@ -90,6 +90,7 @@ const {
   addNewCourse,
   getAllCourses,
   getCourseDetailsByID,
+  yourCoursesByInstructorID,
   updateCourseByID,
 } = require("../controllers/instructor-controller");
 const {
@@ -103,6 +104,7 @@ const upload = multer({ dest: "uploads/" });
 // Course Routes
 router.post("/courses/add", addNewCourse);
 router.get("/courses", getAllCourses);
+router.get("/courses/:instructorId", yourCoursesByInstructorID);
 router.get("/courses/details/:id", getCourseDetailsByID);
 router.put("/courses/update/:id", updateCourseByID);
 

@@ -14,6 +14,7 @@ import PaypalPaymentReturnPage from "@/pages/student/payment-return";
 import StudentCoursesPage from "@/pages/student/student-courses";
 import StudentViewCourseProgressPage from "@/pages/student/course-progress";
 import NotFoundPage from "@/pages/not-found/notfound";
+import AdminDashboardpage from "@/pages/admin/adminpage";
 const RoutesMain = () => {
   const { auth } = useContext(AuthContext);
 
@@ -34,6 +35,16 @@ const RoutesMain = () => {
         element={
           <RouteGuard
             element={<InstructorDashboardpage />}
+            authenticated={auth?.authenticate}
+            user={auth?.user}
+          />
+        }
+      />
+      <Route
+        path="/admin"
+        element={
+          <RouteGuard
+            element={<AdminDashboardpage />}
             authenticated={auth?.authenticate}
             user={auth?.user}
           />
