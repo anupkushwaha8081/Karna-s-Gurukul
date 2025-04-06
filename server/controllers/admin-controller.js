@@ -83,6 +83,9 @@ const getCourseStats = async (req, res) => {
 };
 
 // Get all users with filtering
+
+// Get all users with filtering
+// Get all users with filtering
 const getAllUsers = async (req, res) => {
   try {
     const { role } = req.query;
